@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <th>Nazwa:</th><th>Cena:</th>
+    {% for topping in toppings %}
+    <tr>
+        <td>{{topping.name}}</td>
+        <td>{{topping.price}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

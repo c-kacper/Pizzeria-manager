@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+    <th>Nazwa: </th><th>Dodatki:</th><th>Cena:</th>
+    {% for pizza in pizzas %}
+    <tr>
+        <td>{{pizza.name}}</td>
+        <td>{% for topping in pizza.toppings.all %} {{topping}} {% endfor %}</td>
+        <td>{{pizza.price}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
