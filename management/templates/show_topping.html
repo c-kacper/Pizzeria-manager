@@ -6,14 +6,32 @@
 </head>
 <body>
 <table>
-    <th>Nazwa:</th><th>Cena:</th>
+    <th>Name:</th><th>Price:</th>
     {% for topping in toppings %}
     <tr>
         <td>{{topping.name}}</td>
         <td>{{topping.price}}</td>
+        <td>
+            <form action="/edittopping/{{ topping.id }}">
+                <input type="submit" value="Edit" />
+            </form>
+        </td>
+        <!--<td><a href="/edittopping/{{ topping.id }}">Edit</a></td>-->
+        <td>
+            <form action="/delete-topping/{{ topping.id }}">
+                <input type="submit" value="Delete" />
+            </form>
+        </td>
+        <!--<td><a href="/delete-topping/{{ topping.id }}">Delete</a></td>-->
     </tr>
     {% endfor %}
 </table>
+<form action="/addtopping/">
+    <input type="submit" value="Add new topping" />
+</form>
+<form action="/">
+    <input type="submit" value="Back" />
+</form>
 
 </body>
 </html>

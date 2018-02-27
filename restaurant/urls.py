@@ -18,9 +18,16 @@ from django.contrib import admin
 from management.views import *
 
 urlpatterns = [
+    url(r'^$', index),
     url(r'^admin/', admin.site.urls),
     url(r'^addpizza/$', PizzaAdd.as_view()),
     url(r'^addtopping/$', ToppingAdd.as_view()),
-    url(r'^showpizzas/$', ShowPizza.as_view()),
-    url(r'^showtoppings/$', ShowTopping.as_view()),
+    url(r'^editpizza/(\d+)/$', PizzaEdit.as_view()),
+    url(r'^edittopping/(\d+)/$', ToppingEdit.as_view()),
+    url(r'^delete-topping/(\d+)/$', delete_topping),
+    url(r'^delete-pizza/(\d+)/$', delete_pizza),
+    url(r'^showpizzas/$', ShowPizza.as_view(), name='showpizzas'),
+    url(r'^showtoppings/$', ShowTopping.as_view(), name='showtoppings'),
+
+
 ]
