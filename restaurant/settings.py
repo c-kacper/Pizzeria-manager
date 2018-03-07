@@ -48,7 +48,19 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'restaurant.middleware.RequireLoginMiddleware',
 ]
+
+LOGIN_REQUIRED_URLS = (
+        r'/(.*)$',
+    )
+LOGIN_REQUIRED_URLS_EXCEPTIONS = (
+    r'/login/$',
+    r'/logout/$',
+)
+
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
 
 ROOT_URLCONF = 'restaurant.urls'
 
@@ -123,3 +135,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR + '/static/'

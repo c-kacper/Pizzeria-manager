@@ -1,0 +1,29 @@
+{% extends 'home.html' %}
+{% block content %}
+<table>
+    <th>Name:</th><th>Size:</th><th>Price:</th><th>Available:</th>
+    {% for drink in drinks %}
+    <tr>
+        <td>{{drink.name}}</td>
+        <td>{{drink.size}}</td>
+        <td>{{drink.price}}</td>
+        <td>{{drink.available}}</td>
+        <td>
+            <form action="/editdrink/{{ drink.id }}">
+                <input type="submit" value="Edit" />
+            </form>
+        </td>
+        <td>
+            <form action="/delete-drink/{{ drink.id }}">
+                <input type="submit" value="Delete" />
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<form action="/adddrink/">
+    <input type="submit" value="Add new drink" />
+</form>
+
+
+{% endblock %}

@@ -1,15 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Management</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-            <form action="/showpizzas/">
-                <input type="submit" value="Manage pizzas" />
-            </form>
-            <form action="/showtoppings/">
-                <input type="submit" value="Manage toppings" />
-            </form>
+<ul class="menu">
+  <li class="menu"><a href="/home/">MENU</a></li>
+
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">EDYTUJ MENU</a>
+    <div class="dropdown-content">
+      <a href="/showpizzas/">PIZZA</a>
+      <a href="/showtoppings/">DODATKI</a>
+      <a href="/showdrinks/">NAPOJE</a>
+      <a href="/showsauces/">SOSY</a>
+      <a href="/showsalads/">SAŁATKI</a>
+    </div>
+  </li>
+    <li class="menu"><a href="#news">ZAMÓWIENIA</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">RAPORTY</a>
+    <div class="dropdown-content">
+      <a href="#">DZISIAJ</a>
+      <a href="#">OSTATNI MIESIĄC</a>
+      <a href="#">WIĘCEJ</a>
+    </div>
+  </li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">BAZY DANYCH</a>
+    <div class="dropdown-content">
+      <a href="#">BAZA KODÓW</a>
+      <a href="#">BAZA KLIENTÓW</a>
+    </div>
+  </li>
+  <li class="menu" style="float:right"><a href="/logout/">WYLOGUJ</a></li>
+</ul>
+{% block content %}
+<h1>Witaj w menadżerze pizzerii! Dostępne menu:</h1>
+
+<table>
+    <tr><td><h1>Pizza</h1></td></tr>
+    <th>Name:</th><th>Toppings:</th><th>Price:</th>
+    {% for pizza in pizzas %}
+    <tr>
+        <td>{{pizza.name}}</td>
+        <td>{% for topping in pizza.toppings.all %} {{topping}}, {% endfor %}</td>
+        <td>{{pizza.price}}</td>
+    </tr>
+    {% endfor %}
+
+    <tr><td><h1>Sosy</h1></td></tr>
+    <th>Name:</th><th></th><th>Price:</th>
+    {% for sauce in sauces %}
+    <tr>
+        <td>{{sauce.name}}</td>
+        <td></td>
+        <td>{{sauce.price}}</td>
+    </tr>
+    {% endfor %}
+    <tr><td><h1>Sałatki</h1></td></tr>
+    <th>Name:</th><th>Description:</th><th>Price:</th>
+    {% for salad in salads %}
+    <tr>
+        <td>{{salad.name}}</td>
+        <td>{{salad.description}}</td>
+        <td>{{salad.price}}</td>
+    </tr>
+    {% endfor %}
+    <tr><td><h1>Napoje</h1></td></tr>
+    <th>Name:</th><th>Size:</th><th>Price:</th>
+    {% for drink in drinks %}
+    <tr>
+        <td>{{drink.name}}</td>
+        <td>{{drink.size}}</td>
+        <td>{{drink.price}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+
+
+<div class="footer">
+  <p>zrób se sam, a nie czekasz na gotowe</p>
+</div>
 </body>
 </html>

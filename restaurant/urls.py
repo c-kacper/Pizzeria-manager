@@ -16,18 +16,34 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from management.views import *
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    url(r'^$', index),
+    url(r'^home/$', MenuShow.as_view(), name='home'),
     url(r'^admin/', admin.site.urls),
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
     url(r'^addpizza/$', PizzaAdd.as_view()),
     url(r'^addtopping/$', ToppingAdd.as_view()),
+    url(r'^adddrink/$', DrinkAdd.as_view()),
+    url(r'^addsauce/$', SauceAdd.as_view()),
+    url(r'^addsalad/$', SaladAdd.as_view()),
     url(r'^editpizza/(\d+)/$', PizzaEdit.as_view()),
     url(r'^edittopping/(\d+)/$', ToppingEdit.as_view()),
-    url(r'^delete-topping/(\d+)/$', delete_topping),
-    url(r'^delete-pizza/(\d+)/$', delete_pizza),
-    url(r'^showpizzas/$', ShowPizza.as_view(), name='showpizzas'),
-    url(r'^showtoppings/$', ShowTopping.as_view(), name='showtoppings'),
-
-
+    url(r'^editdrink/(\d+)/$', DrinkEdit.as_view()),
+    url(r'^editsauce/(\d+)/$', SauceEdit.as_view()),
+    url(r'^editsalad/(\d+)/$', SaladEdit.as_view()),
+    url(r'^delete-pizza/(\d+)/$', PizzaEdit.delete_pizza),
+    url(r'^delete-topping/(\d+)/$', ToppingEdit.delete_topping),
+    url(r'^delete-drink/(\d+)/$', DrinkEdit.delete_drink),
+    url(r'^delete-sauce/(\d+)/$', SauceEdit.delete_sauce),
+    url(r'^delete-salad/(\d+)/$', SaladEdit.delete_salad),
+    url(r'^showpizzas/$', PizzaShow.as_view(), name='showpizzas'),
+    url(r'^showtoppings/$', ToppingShow.as_view(), name='showtoppings'),
+    url(r'^showdrinks/$', DrinkShow.as_view(), name='showdrinks'),
+    url(r'^showsauces/$', SauceShow.as_view(), name='showsauces'),
+    url(r'^showsalads/$', SaladShow.as_view(), name='showsalads'),
 ]
+
+
+

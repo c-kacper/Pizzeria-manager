@@ -2,25 +2,25 @@
 {% block content %}
 <table>
     <th>Name:</th><th>Price:</th><th>Available:</th>
-    {% for topping in toppings %}
+    {% for sauce in sauces %}
     <tr>
-        <td>{{topping.name}}</td>
-        <td>{{topping.price}}</td>
-        <td>{{topping.available}}</td>
+        <td>{{sauce.name}}</td>
+        <td>{{sauce.price}}</td>
+        <td>{{sauce.available}}</td>
         <td>
-            <form action="/edittopping/{{ topping.id }}">
+            <form action="/editsauce/{{ sauce.id }}">
                 <input type="submit" value="Edit" />
             </form>
         </td>
         <td>
-            <form action="/delete-topping/{{ topping.id }}">
+            <form action="/delete-sauce/{{ sauce.id }}">
                 <input type="submit" value="Delete" />
             </form>
         </td>
     </tr>
     {% endfor %}
 </table>
-<form action="/addtopping/">
-    <input type="submit" value="Add new topping" />
+<form action="/addsauce/">
+    <input type="submit" value="Add new sauce" />
 </form>
 {% endblock %}

@@ -1,25 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
+{% extends 'home.html' %}
+{% block content %}
 <table>
-    <th>Name:</th><th>Toppings:</th><th>Price:</th>
+    <th>Name:</th><th>Toppings:</th><th>Price:</th><th>Available:</th>
     {% for pizza in pizzas %}
     <tr>
         <td>{{pizza.name}}</td>
-        <td>{% for topping in pizza.toppings.all %} {{topping}} {% endfor %}</td>
+        <td>{% for topping in pizza.toppings.all %} {{topping}}, {% endfor %}</td>
         <td>{{pizza.price}}</td>
-        <!--<td><a href="/editpizza/{{ pizza.id }}">Edit</a></td>-->
+        <td>{{pizza.available}}</td>
         <td>
             <form action="/editpizza/{{ pizza.id }}">
                 <input type="submit" value="Edit" />
             </form>
         </td>
-        <!--<td><a href="/delete-pizza/{{ pizza.id }}">Delete</a></td>-->
         <td>
             <form action="/delete-pizza/{{ pizza.id }}">
                 <input type="submit" value="Delete" />
@@ -31,9 +24,5 @@
 <form action="/addpizza/">
     <input type="submit" value="Add new pizza" />
 </form>
-<form action="/">
-    <input type="submit" value="Back" />
-</form>
 
-</body>
-</html>
+{% endblock %}
